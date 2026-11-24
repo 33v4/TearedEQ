@@ -11,13 +11,21 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Configure (CMake + Visual Studio 17 2022, JUCE via FetchContent)
+      - name: Show repo files (for debugging)
+        shell: pwsh
+        run: |
+          Write-Host "---- Top level ----"
+          Get-ChildItem -Force | Select-Object Name
+          Write-Host "---- Source folder ----"
+          Get-ChildItem Source | Select-Object Name
+
+      - name: Configure (CMake, Visual Studio 17 2022, JUCE via FetchContent)
         run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
 
       - name: Build Release VST3
         run: cmake --build build --config Release --target TearedEQ_VST3 --parallel
 
-      - name: List build output
+      - name: Show build output
         shell: pwsh
         run: Get-ChildItem -Recurse build/TearedEQ_artefacts/Release/VST3 | Select-Object FullName
 
