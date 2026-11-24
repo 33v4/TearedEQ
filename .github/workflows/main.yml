@@ -1,4 +1,3 @@
-```yaml
 name: Build TearedEQ
 
 on:
@@ -28,4 +27,3 @@ jobs:
           name: TearedEQ-VST3
           path: build/TearedEQ_artefacts/Release/VST3/
           if-no-files-found: error
-```
