@@ -1,3 +1,4 @@
+```yaml
 name: Build TearedEQ
 
 on:
@@ -20,3 +21,11 @@ jobs:
 
       - name: Build VST3
         run: cmake --build build --config Release --parallel
+
+      - name: Upload VST3 Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TearedEQ-VST3
+          path: build/TearedEQ_artefacts/Release/VST3/
+          if-no-files-found: error
+```
